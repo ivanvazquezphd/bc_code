@@ -9,7 +9,7 @@ output: md_document
 * Describe what R is.
 * Interact with R using RStudio.
 * Familiarize with RStudio components.
-* Describe data types define variables
+* Describe data types and define variables
 
 ## Introduction
 
@@ -169,7 +169,6 @@ Let's add `x` and `y`.
 x + y 
 ```
 
-
 Importantly, when defining variable names, ensure that you use an _informative_ name. This enables yourself and others when reviewing code to know how the variable was used. For instance, we used `x` and `y` in the examples, but their meaning is unknown. Something like `country_population` or `room_capacity` provides better definition for a variable.
 
 ### R Data Types
@@ -195,7 +194,43 @@ x <- TRUE
 class(x)
 ```
 
-### Vectors
+
+
+### Relational and Logical Operators
+In R, there are relational operators that compare values between two variables. Typically, these are numerical equalities or inequalities. The result of comparison is a Boolean value. 
+
+Operator    |  Description
+----------  |  ------
+`<`         |  less than 
+`<=`        |  less than or equal to       
+`>`         |  greater than
+`>=`        |  greater than or equal to
+`==`        |  equal to
+`!=`        |  not equal to
+`%in%`      |  is 'in' a given vector
+
+```{r}
+#Is 3 greater than 5?
+3 > 5
+```
+
+There are also logical operators which connect two or more expressions depending on the meaning of the operator. These are typically combined with relational operators. 
+
+Operator    |  Description
+----------  |  ------
+`|`         |  OR
+`&`         |  AND
+`!`         |  NOT
+
+```{r}
+#Is 3 greater than 1 and 5?
+3 > 1 & 3 > 5
+
+#Is 3 greater than 1 or 5?
+3 > 1 | 3 > 5
+```
+
+## Vectors
 Vectors are a data structure in R containing one or more values. In fact, you may have noticed a `[1]` in the output of `x`. This indicates that it is a vector of length `1`.
 
 ```{r}
@@ -231,6 +266,7 @@ We can also do the opposite and select all elements but a single or multiple ele
 #Let's keep all but the 5th element
 my_first_vector[-5]
 ```
+
 ```{r}
 #Let's keep all but the 1st and 3rd elements
 my_first_vector[-c(1,3)]
@@ -250,67 +286,124 @@ min(my_first_vector) #This gives the minimum numeric value in a vector
 max(my_first_vector) #This gives the maximmum numeric value in a vector
 ```
 
-### Relational and Logical Operators
-In R, there are relational operators that compare values between two variables. Typically, these are numerical equalities or inequalities. The result of comparison is a Boolean value. 
+## Matrices
+Matrices are vectors with a dimension attribute. The dimension attribute tells us how many rows and columns the matrix has.
 
-Operator    |  Description
-----------  |  ------
-`<`         |  less than 
-`<=`        |  less than or equal to       
-`>`         |  greater than
-`>=`        |  greater than or equal to
-`==`        |  equal to
-`!=`        |  not equal to
-`%in%`      |  is 'in' a given vector
+The `matrix()` function is used to create a function. We provide the values, # of rows and # of columns. 
 
 ```{r}
-#Is 3 greater than 5?
-3 > 5
-```
-
-We can use the `%in%` operator to determine if a given value is in a vector.
-```{r}
-#Is 5 in 1 through 10?
-5 %in% 1:10
+#matrix of sequence 1 to 6 with two rows and three columnss
+my_matrix <- matrix(1:6, nrow = 2, ncol = 3) 
+print(my_matrix)
 ```
 
 ```{r}
-#Is 'a' in c('a','b','c')?
-'a' %in% c('a','b','c')
+dim(my_matrix)
 ```
-
-There are also logical operators which connect two or more expressions depending on the meaning of the operator. These are typically combined with relational operators. 
-
-Operator    |  Description
-----------  |  ------
-`|`         |  OR
-`&`         |  AND
-`!`         |  NOT
 
 ```{r}
-#Is 3 greater than 1 and 5?
-3 > 1 & 3 > 5
-
-#Is 3 greater than 1 or 5?
-3 > 1 | 3 > 5
+my_matrix[1,2] #first row and second column
 ```
 
-## Lists
+Matrices can be created by adding vectors using `cbind()`
+```{r}
+vector_1 <- c(1,2,3,4)
+vector_2 <- c(2,3,4,5)
+
+matrix_1 <- cbind(vector_1, vector_2)
+print(matrix_1)
+```
+
+***
+**Exercise**
+
+1. Create a matrix containing a sequence from 1 to 10 with 5 rows and 2 columns
+2. Add a row vector of values c(3,5) to the matrix
+
+***
+
+## List
+Lists are a special type of vector or R object can contain elements of different classes.
+
+Lists can be explicitly created using the `list()` function.
+
+```{r}
+my_list <- list('I love science!', 1, TRUE)
+print(my_list)
+```
+Like vectors, we can use indexing to select specific elements of a list. Using single brackets `[]` will create a new list with the index or indeces selected.
+```{r}
+my_list[1:2]
+```
+
+Using double brackets `[[]]` will not create a new list and only selects the element. 
+```{r}
+my_list[[1]]
+```
+
+***
+**Exercise**
+
+1. Can we do my_list[1,2]?
+2. Can we do my_list[[2:3]]?
+
+***
 
 ## Data Frames
+Data frames can be used tabular data in R. You can think of it as an excel worksheet. Also, unlike matrices, data frames can store different classes of objects in each column.
+
+Data frames can be created using the `data.frame()` function.
+
+```{r}
+my_dataframe <- data.frame(A = 1:5, B = c(T, T, F, F, T))
+print(my_dataframe)
+```
+
 
 ## Reading in data
 
-## Basic plotting
+## Exploring your data
 
 ## Saving data
+As you begin working in R, you will inevitably have a number of data frames saved to your Environment pane. These may be data sources you loaded, data frames you created, or raw data, cleaned data, analyses, models, etc. While you could simply re-run your script, you can also save everything in your Environment to an R Data file. When you load the R Data file, all of those data frames will reload. An additional bonus is that these files are smaller due to compression!
+
+This is particularly useful if you are creating the data frames in one script and will use them in another script.
+
+To save your Environment to an R Data file, you have a few options. You can run these in your script or in the console. That’s up to you.
+
+```{r}
+# Save an object to a file called "my_data.rds"
+saveRDS(object, file = "my_data.rds")
+
+# Load the object
+readRDS(file = "my_data.rds")
+```
+
+```{r}
+# Saving on object called "data1" in an RData file called "data"
+save(data1, file = "data.RData")
+
+# Save multiple objects
+save(data1, data2, file = "data.RData")
+
+# To load the data again
+load("data.RData")
+```
+
+```{r}
+# Save all objects
+save.image(file = "my_work_space.RData")
+
+# Load your environment
+load("my_work_space.RData")
+```
+
 
 ## Best Practices
   1. Document your code, thoughts, and decision making. Keep this in a `.Rmd` or `.r` file. Use `#` for commenting. This will aid in reproducible of your code for yourself and others.
   2. Create and work inside an R project. This helps with code and data organization. 
   3. Use informative naming for variables. Try to stay from `x`, `y`, or similar.
-  4. Do create functions to simplify your code. 
-  5. Practice and keep learning!
+  4. Practice and keep learning!
   
 ## Additional Resources
  - [Introduction to R and Rstudio](https://hbctraining.github.io/Training-modules/IntroR/lessons/01_Intro-to-R.html): Harvard Bioinformatics
