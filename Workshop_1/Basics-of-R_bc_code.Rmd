@@ -74,7 +74,6 @@ We can view our working directory by using the function `getwd()`
 getwd()
 ```
 
-
 Your working directory will be the location where R will automatically look for files. If you want to find files in a different location, you will either need to provide the full path or type the path in relation to the working directory. Files that you output will automatically save into your working directory unless a path is provided.
 
 To organize your working directory, it is highly recommended to generate sub-folders like `data/` or `results/`. You can do so in the Files tab and select `New Folder`. 
@@ -472,12 +471,14 @@ To load the data again, use the `load()` function.
 load("iris_my_matrix.RData")
 ```
 
+Finally, if you want to save your entire workspace and this may include various objects that are not part of the analyses. We use `save.image()`.  
 
 ```{r eval = F}
-# Save all objects
 save.image(file = "my_work_space.RData")
+```
 
-# Load your environment
+The workspace can be loaded into R using `load()`. 
+```{r eval = F}
 load("my_work_space.RData")
 ```
 

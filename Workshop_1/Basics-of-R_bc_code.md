@@ -691,10 +691,14 @@ To load the data again, use the `load()` function.
 
     load("iris_my_matrix.RData")
 
-    # Save all objects
+Finally, if you want to save your entire workspace and this may include
+various objects that are not part of the analyses. We use
+`save.image()`.
+
     save.image(file = "my_work_space.RData")
 
-    # Load your environment
+The workspace can be loaded into R using `load()`.
+
     load("my_work_space.RData")
 
 ## Best Practices
