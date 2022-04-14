@@ -49,7 +49,7 @@ bioinformatics.
 Once you open RStudio, you will see four main panes. Each will contain
 different information. You can see my screen below.
 
-![](r-Studio.png)
+![](r-studio.png)
 
 Starting from the top left pane and going from left to right, we have
 the descriptions of each pane below:
@@ -83,12 +83,16 @@ When working with R, it is always a good idea to create a new project
 directory. This will help you keep your files and data organized by
 project.
 
-To get started: 1. Open RStudio 2. Go to the File menu and select New
-Project. 3. In the New Project window, choose New Directory. Then,
-choose New Project. Name your new directory. You can use a name like,
-Basics-in-R, and then “Create the project as subdirectory of:” in a
-location of your choice. 4. Click on Create Project. 5. The project
-should open up automatically in Rstudio.
+To get started:
+
+1.  Open RStudio
+2.  Go to the File menu and select New Project.
+3.  In the New Project window, choose New Directory. Then, choose New
+    Project. Name your new directory. You can use a name like,
+    Basics-in-R, and then “Create the project as sub directory of:” in a
+    location of your choice.
+4.  Click on Create Project.
+5.  The project should open up automatically in Rstudio.
 
 We can view our working directory by using the function `getwd()`
 
@@ -522,7 +526,7 @@ Lists can be explicitly created using the `list()` function.
 
 Like vectors, we can use indexing to select specific elements of a list.
 Using single brackets `[]` will create a new list with the index or
-indeces selected.
+indices selected.
 
     my_list[1:2]
 
@@ -554,7 +558,7 @@ Data frames can be created using the `data.frame()` function.
 ## Installing Packages
 
 While R comes with many pre-load packages, additional functionality can
-be acheived by install packages through CRAN, Github, or Bioconductor.
+be added by installing packages through CRAN, Github, or Bioconductor.
 These packages add new functions that can simplify very complex
 calculations and scripts into one line.
 
@@ -563,8 +567,8 @@ calculations and scripts into one line.
 As we discussed before, CRAN is the official repository for R packages.
 To install a package, you use the following function:
 `install.packages()`. The package name in quotations is the argument for
-this function. For example, we can install a `ggplot2`, which we will
-use later.
+this function. For example, we can install the data visualization
+package `ggplot2`, which we will use later.
 
     install.packages("ggplot2")
 
@@ -576,7 +580,7 @@ for `ggplot2` we do the following:
 ### Other Repositories
 
 -   [Github](https://github.com), which is an online software repository
-    provider, hosts several respositories of open-sources R packages.
+    provider, hosts several repositories of open-sources R packages.
     There are several R packages that be can be found in early phases of
     development that you can find and test out. Github is not limited to
     R and software written in other languages can be found there too.
@@ -585,13 +589,14 @@ for `ggplot2` we do the following:
 
 -   [Bioconductor](https://www.bioconductor.org) is a repository that
     focuses on R packages for biological assays. They host packages for
-    analysis of microarrays, RNA-seq, ATAC-seq, scRNA-seq, amongst many
+    analysis of microarrays, RNA-seq, ATAC-seq, scRNA-seq, among many
     more.
 
 ## Working with Data
 
 A major reason many use R is to analyze data in a reproducible manner.
-We can read in data through several means.
+In that case, we need to be able to save data and also read in data from
+other sources. We can read in data through several means.
 
 ### Reading in data
 
@@ -601,7 +606,7 @@ There are several methods for reading in tabular data.
 -   `read.table()`
 -   `read.delim()`
 
-All of the above function perfrom similarly in that they import tabuluar
+All of the above function perform similarly in that they import tabular
 data such as those in `.csv` or `.txt` format.
 
     iris <- read.csv(file = 'iris_dataset.csv')
@@ -655,7 +660,7 @@ scatter plot with `geom_point()`
 
 ### Saving data
 
-When working with R, you may acccumulate several proecessed data in the
+When working with R, you may accumulate several processed data in the
 Environment pane that you want to save and load at another time. In
 addition, you may want to send this data to another system that has R.
 
