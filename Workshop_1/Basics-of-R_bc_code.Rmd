@@ -1,7 +1,7 @@
 ---
-title: Basics of R
-authors: Danh Truong, Ivan Vazquez
+title: "Basics of R"
 output: md_document
+authors: Danh Truong, Ivan Vazquez
 ---
 
 ## Learning Objectives
@@ -44,7 +44,7 @@ This training is a first in a series for our 2022 “Series on Bioinformatics”
 
 Once you open RStudio, you will see four main panes. Each will contain different information. You can see my screen below. 
 
-![](images/RStudio.png)
+![](r-Studio.png)
 
 Starting from the top left pane and going from left to right, we have the descriptions of each pane below:
 
@@ -73,9 +73,6 @@ We can view our working directory by using the function `getwd()`
 getwd()
 ```
 
-```{r eval = F, class.source= 'white'}
-[1] "/Users/dtruong4/Desktop/Basics-in-R"
-```
 
 Your working directory will be the location where R will automatically look for files. If you want to find files in a different location, you will either need to provide the full path or type the path in relation to the working directory. Files that you output will automatically save into your working directory unless a path is provided.
 
@@ -95,7 +92,7 @@ Remainder       | `a %% b`
 Integer Division| `a %/% b`
 
 For instance, here is an example of addition. 
-```{r}
+```{r eval = F}
 5 + 3
 ```
 
@@ -108,16 +105,16 @@ For instance, here is an example of addition.
 
 ### Functions in R
 R has several pre-built functions. For instance, we can use `sum()` instead of the `+` symbol for addition. 
-```{r}
+```{r eval = F}
 sum(1,3) #This gives the sum of 1 and 3
 ```
 
 We can also call the _R documentation_ for a function by using `?` before the function name. The documentation will show up under the Help tab. It contains information regarding description, usage, and arguments for a function. 
-```{r}
+```{r eval = F}
 ?sum #Find the R Documentation for sum()
 ```
 
-![](images/sum_help.png)
+![](sum_help.png)
 
 ***
 **Exercise**
@@ -142,7 +139,7 @@ Median             | `median()`
 Minimum            | `min()`
 Maximum            | `max()`
 
-```{r}
+```{r eval = F}
 #What is the square root of 10?
 sqrt(10)
 ```
@@ -158,13 +155,13 @@ sqrt(10)
 ### Defining variables
 A key aspect of programming is defining variables. We store data or values as variables so that we can use in other functions or recall it at a later time. It allows us to save time by storing the data and not having to re-calculate it again. R has two _assignment operators_ for defining variables: `<-` and `=`. The operator `<-` can be used anywhere, whereas the operator `=` is only allowed at the top level. 
 
-```{r}
+```{r eval = F}
 x <- 1
 y <- 15.3
 ```
 
 Let's add `x` and `y`. 
-```{r}
+```{r eval = F}
 #What is in x + y?
 x + y 
 ```
@@ -184,17 +181,15 @@ There are different types of data in R, which can be stored as a variable. Below
 |  factor        | A categorical type of data                                    | `#> [1] Male Male Male Female Female` |
 |                |                                                               |`#> Levels: Male Female`|           
 The function `class()` can be used to find out the type of data that you are dealing with.
-```{r}
+```{r eval = F}
 x <- 3
 class(x)
 ```
 
-```{r}
+```{r eval = F}
 x <- TRUE
 class(x)
 ```
-
-
 
 ### Relational and Logical Operators
 In R, there are relational operators that compare values between two variables. Typically, these are numerical equalities or inequalities. The result of comparison is a Boolean value. 
@@ -209,7 +204,7 @@ Operator    |  Description
 `!=`        |  not equal to
 `%in%`      |  is 'in' a given vector
 
-```{r}
+```{r eval = F}
 #Is 3 greater than 5?
 3 > 5
 ```
@@ -222,7 +217,7 @@ Operator    |  Description
 `&`         |  AND
 `!`         |  NOT
 
-```{r}
+```{r eval = F}
 #Is 3 greater than 1 and 5?
 3 > 1 & 3 > 5
 
@@ -230,83 +225,85 @@ Operator    |  Description
 3 > 1 | 3 > 5
 ```
 
-## Vectors
+## R Data Objects
+
+### Vectors
 Vectors are a data structure in R containing one or more values. In fact, you may have noticed a `[1]` in the output of `x`. This indicates that it is a vector of length `1`.
 
-```{r}
+```{r eval = F}
 length(x) #This function gives you the length of a vector
 ```
 
 We use the function `c()` to define a vector with multiple elements. The `c` stands for combine. 
-```{r}
+```{r eval = F}
 my_first_vector <- c(1,2,3,4,5) #We can also do this with the following, 1:5 instead of c()
 my_first_vector
 ```
 
 We can add more elements to the same vector.
-```{r}
+```{r eval = F}
 my_first_vector <- c(my_first_vector, 6,7)
 my_first_vector
 ```
 
 We can call specific elements in a vector by using a process called _indexing_. Basically, we can subset specific elements of a vector for further analysis. We do this by defining which position we want in brackets `[]` after the vector.
-```{r}
+```{r eval = F}
 #Let's take out the 3rd element
 my_first_vector[3]
 ```
 
 What if we wanted to select multiple elements? We can use another vector with the positions we want.
-```{r}
+```{r eval = F}
 #Let's take out the 2nd and 4th elements
 my_first_vector[c(2,4)]
 ```
 
 We can also do the opposite and select all elements but a single or multiple element by using `-`.
-```{r}
+```{r eval = F}
 #Let's keep all but the 5th element
 my_first_vector[-5]
 ```
 
-```{r}
+```{r eval = F}
 #Let's keep all but the 1st and 3rd elements
 my_first_vector[-c(1,3)]
 ```
 
 Importantly, R functions are typically _vectorized_. This means that the function will perform its operation on all elements of the vector without having to loop through for each element. 
 
-```{r}
+```{r eval = F}
 my_first_vector
 my_first_vector * 2
 ```
 
 We can also test some of math functions we listed above.
-```{r}
+```{r eval = F}
 mean(my_first_vector) #This gives the mean of a numeric vector
 min(my_first_vector) #This gives the minimum numeric value in a vector
 max(my_first_vector) #This gives the maximmum numeric value in a vector
 ```
 
-## Matrices
+### Matrices
 Matrices are vectors with a dimension attribute. The dimension attribute tells us how many rows and columns the matrix has.
 
 The `matrix()` function is used to create a function. We provide the values, # of rows and # of columns. 
 
-```{r}
+```{r eval = F}
 #matrix of sequence 1 to 6 with two rows and three columnss
 my_matrix <- matrix(1:6, nrow = 2, ncol = 3) 
 print(my_matrix)
 ```
 
-```{r}
+```{r eval = F}
 dim(my_matrix)
 ```
 
-```{r}
+```{r eval = F}
 my_matrix[1,2] #first row and second column
 ```
 
 Matrices can be created by adding vectors using `cbind()`
-```{r}
+```{r eval = F}
 vector_1 <- c(1,2,3,4)
 vector_2 <- c(2,3,4,5)
 
@@ -322,22 +319,22 @@ print(matrix_1)
 
 ***
 
-## List
+### List
 Lists are a special type of vector or R object can contain elements of different classes.
 
 Lists can be explicitly created using the `list()` function.
 
-```{r}
+```{r eval = F}
 my_list <- list('I love science!', 1, TRUE)
 print(my_list)
 ```
 Like vectors, we can use indexing to select specific elements of a list. Using single brackets `[]` will create a new list with the index or indeces selected.
-```{r}
+```{r eval = F}
 my_list[1:2]
 ```
 
 Using double brackets `[[]]` will not create a new list and only selects the element. 
-```{r}
+```{r eval = F}
 my_list[[1]]
 ```
 
@@ -349,55 +346,139 @@ my_list[[1]]
 
 ***
 
-## Data Frames
+### Data Frames
 Data frames can be used tabular data in R. You can think of it as an excel worksheet. Also, unlike matrices, data frames can store different classes of objects in each column.
 
 Data frames can be created using the `data.frame()` function.
 
-```{r}
+```{r eval = F}
 my_dataframe <- data.frame(A = 1:5, B = c(T, T, F, F, T))
 print(my_dataframe)
 ```
 
+## Installing Packages
+While R comes with many pre-load packages, additional functionality can be acheived by install packages through CRAN, Github, or Bioconductor. These packages add new functions that can simplify very complex calculations and scripts into one line.
 
-## Reading in data
+### CRAN
+As we discussed before, CRAN is the official repository for R packages. To install a package, you use the following function: `install.packages()`. The package name in quotations is the argument for this function. For example, we can install a `ggplot2`, which we will use later. 
 
-## Exploring your data
-
-## Saving data
-As you begin working in R, you will inevitably have a number of data frames saved to your Environment pane. These may be data sources you loaded, data frames you created, or raw data, cleaned data, analyses, models, etc. While you could simply re-run your script, you can also save everything in your Environment to an R Data file. When you load the R Data file, all of those data frames will reload. An additional bonus is that these files are smaller due to compression!
-
-This is particularly useful if you are creating the data frames in one script and will use them in another script.
-
-To save your Environment to an R Data file, you have a few options. You can run these in your script or in the console. That’s up to you.
-
-```{r}
-# Save an object to a file called "my_data.rds"
-saveRDS(object, file = "my_data.rds")
-
-# Load the object
-readRDS(file = "my_data.rds")
+```{r eval = F}
+install.packages("ggplot2")
 ```
 
-```{r}
-# Saving on object called "data1" in an RData file called "data"
-save(data1, file = "data.RData")
+We can load the package by using the `library()` function. In the case for `ggplot2` we do the following:
+```{r eval = F}
+library(ggplot2)
+```
 
+
+### Other Repositories
+* [Github](https://github.com), which is an online software repository provider, hosts several respositories of open-sources R packages. There are several R packages that be can be found in early phases of development that you can find and test out. Github is not limited to R and software written in other languages can be found there too. Oftentimes once the software has completed development or has reached a major version, it may move to CRAN or Bioconductor. 
+
+* [Bioconductor](https://www.bioconductor.org) is a repository that focuses on R packages for biological assays. They host packages for analysis of microarrays, RNA-seq, ATAC-seq, scRNA-seq, amongst many more. 
+
+## Working with Data
+A major reason many use R is to analyze data in a reproducible manner. We can read in data through several means.
+
+### Reading in data
+There are several methods for reading in tabular data. 
+
+* `read.csv()`
+* `read.table()`
+* `read.delim()`
+
+All of the above function perfrom similarly in that they import tabuluar data such as those in `.csv` or `.txt` format. 
+
+```{r eval = F}
+iris <- read.csv(file = 'iris_dataset.csv')
+```
+
+### Exploring your data
+
+The data that we imported is the `Iris` data set. It is a well-known data set of classifying iris plants.  Let's see what type of data we imported by using the `class()` function. 
+
+```{r eval = F}
+class(iris)
+```
+
+We use `dim()` to see how many rows and columns the data has.
+
+```{r eval = F}
+dim(iris) #find rows and columns
+```
+
+To explore the first 6 row, we can use the `head()` function. This may be helpful when analyzing large data sets. 
+
+```{r eval = F}
+head(iris)
+```
+
+There are 4 columns that are made up of numbers and one with strings. The fifth column `Species` is the classification.
+
+***
+**Exercise**
+
+1. How can we look at more than 6 rows when using `head()`?
+
+***
+
+This tells us that there are 150 rows and 5 columns in this data frame. It is also good practice to use the `str` function to briefly look at the structure of the data.
+
+```{r eval = F}
+str(iris)
+```
+
+Again, this confirmed our brief look earlier that there are 4 columns of numeric values. Using `summmary()`, we can acquire some insight on the data distribution. 
+
+```{r eval = F}
+summary(iris)
+```
+
+We can start by looking at the data point distribution of `Sepal.Length` between the three species. We use the library `ggplot2` and create a scatter plot with `geom_point()`
+
+```{r eval = F}
+ggplot(iris, mapping = aes(y = Sepal.Length, x = Species, color = Species)) +
+  geom_point()
+```
+
+### Saving data
+When working with R, you may acccumulate several proecessed data in the Environment pane that you want to save and load at another time. In addition, you may want to send this data to another system that has R. 
+
+If you are keeping good practices, you would have maintained a notebook and had all your code saved. In that case, you could re-run all the code, but it will take time and computation power.
+
+Saving the data as an R data file will time, computational power, and memory. 
+
+There are a few ways to save your data. 
+
+We can use `saveRDS()` to compress a single object as an `.rds`.
+```{r eval = F}
+saveRDS(iris, file = "my_data_iris.rds")
+```
+
+To load the data, use the `readRDS()` function. You need to have the path to the file. 
+```{r eval = F}
+readRDS(file = "my_data_iris.rds")
+```
+
+Using the `save()` function, we can save multiple files as an `.Rdata`. 
+```{r eval = F}
 # Save multiple objects
-save(data1, data2, file = "data.RData")
-
-# To load the data again
-load("data.RData")
+save(iris, my_matrix, file = "iris_my_matrix.RData")
 ```
 
-```{r}
+To load the data again, use the `load()` function.
+```{r eval = F}
+load("iris_my_matrix.RData")
+```
+
+
+```{r eval = F}
 # Save all objects
 save.image(file = "my_work_space.RData")
 
 # Load your environment
 load("my_work_space.RData")
 ```
-
 
 ## Best Practices
   1. Document your code, thoughts, and decision making. Keep this in a `.Rmd` or `.r` file. Use `#` for commenting. This will aid in reproducible of your code for yourself and others.
@@ -409,3 +490,5 @@ load("my_work_space.RData")
  - [Introduction to R and Rstudio](https://hbctraining.github.io/Training-modules/IntroR/lessons/01_Intro-to-R.html): Harvard Bioinformatics
  - [Introduction to R and RStudio](https://htmlpreview.github.io/?https://github.com/AlexsLemonade/training-modules/blob/master/intro-to-R-tidyverse/01-intro_to_base_R.nb.html): Alex Lemonade Stand
  - [Introduction to R and RStudio](https://docs.ycrc.yale.edu/r-novice-gapminder/01-rstudio-intro/index.html): Yale CRC
+ - [R Software Handbook](https://bookdown.org/aschmi11/RESMHandbook/)
+ - [R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/)
