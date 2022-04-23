@@ -26,7 +26,7 @@ This training is the first in a series of tutorials for our 2022 "Series on Bioi
 
     -   Considered an in-demand skill to learn
 
-## Comprehensive R Archive Network ([CRAN](Become familiar with the key features in RStudio))
+## Comprehensive R Archive Network ([CRAN](Become%20familiar%20with%20the%20key%20features%20in%20RStudio))
 
 -   CRAN is the central software repository for R, supported by the R Foundation
 -   Network of ftp and web servers store identical, up-to-date, versions of code and documentation for R
@@ -167,7 +167,7 @@ Variables are fundamental for building reproducible and intuitive programs. They
 
 Let's add `x` and `y`.
 
-    #What is in x + y (or z)?
+    # What is in x + y (or z)?
     z <- x + y 
 
 **Best practice note:** Variable names should be *intuitive*. This makes your code more readable, which reduces the amount of time it takes to understand what the code is doing. For example, assume your are tasked with finding the number of people in a crowd. For this, you wrote the code above, `x <- 230` ..., and sent it to your boss. Unfortunately, your boss also wanted to know the number of women in the crowd and does not know that you intended for `x` to be the number of women. Rather than using `x`, `y`, and `z`, you could write a more *readable* or interpretable code as:
@@ -226,8 +226,14 @@ There are also logical operators which connect two or more expressions depending
     #Is 3 greater than 1 and is 3 greater than 5? 
     3 > 1 & 3 > 5
 
-    #Is 3 greater than 1 or 5?
+    #Is 3 greater than 1 or is 3 greater than 5?
     3 > 1 | 3 > 5
+
+    #The NOT operator switches the value of a boolean
+    print(!TRUE) # this is printing the output of the opration NOT(TRUE) = FALSE
+    print(!FALSE) # this is printing the output of the operation NOT(FALSE) = TRUE
+
+    #
 
 ## R Data Objects
 
