@@ -1,5 +1,7 @@
 ---
----
+title: "Basics of R"
+output: md_document
+authors: Danh Truong, Ivan Vazquez
 ---
 
 ## Learning Objectives
@@ -15,7 +17,7 @@
 
 ## Introduction
 
-This training is the first in a series of tutorials for our 2022 "Series on Bioinformatics" starting April 27th, 2022. This is a great opportunity to build the skills needed to succeed in bioinformatics from the ground up. The workshops will be taught by postdocs with years of experience in bioinformatics.
+This training is the first in a series of tutorials for our 2022 “Bioinformatics Café” starting April 27th, 2022. This is a great opportunity to build the skills needed to succeed in bioinformatics from the ground up. The workshops will be taught by postdocs with years of experience in bioinformatics.
 
 ## What is R?
 
@@ -77,7 +79,9 @@ To get started:
 
 We can view our working directory by using the function `getwd()`
 
-    getwd()
+```{r eval = F}
+getwd()
+```
 
 Your working directory will be the location where R will automatically look for files. If you want to find files in a different location, you will either need to provide the full path or type the path in relation to the working directory. Files that you output will automatically save into your working directory unless a path is provided.
 
@@ -99,7 +103,9 @@ Below are some basic math operations available in R.
 
 For instance, here is an example of addition.
 
-    5 + 3
+```{r eval = F}
+5 + 3
+```
 
 ------------------------------------------------------------------------
 
@@ -113,11 +119,15 @@ For instance, here is an example of addition.
 
 R has several pre-built functions. For instance, we can use `sum()` instead of the `+` symbol for addition.
 
-    sum(1,3) #This gives the sum of 1 and 3
+```{r eval = F}
+sum(1,3) #This gives the sum of 1 and 3
+```
 
 We can also call the *R documentation* for a function by using `?` before the function name. The documentation will show up under the Help tab. It contains information regarding description, usage, and arguments for a function.
 
-    ?sum #Find the R Documentation for sum()
+```{r eval = F}
+?sum #Find the R Documentation for sum()
+```
 
 ![](sum_help.png)
 
@@ -146,8 +156,10 @@ In addition to the basic calculations, there are many common pre-built math func
 | Minimum            | `min()`    |
 | Maximum            | `max()`    |
 
-    #What is the square root of 10?
-    sqrt(10)
+```{r eval = F}
+#What is the square root of 10?
+sqrt(10)
+```
 
 ------------------------------------------------------------------------
 
@@ -162,41 +174,45 @@ In addition to the basic calculations, there are many common pre-built math func
 
 Variables are fundamental for building reproducible and intuitive programs. They help us store data in the computer memory that becomes *callable* or accessible in different parts of a program. As you will see, variables also allow us to reduce the amount of typing. R has two *assignment operators* for defining variables: `<-` and `=`. The operator `<-` can be used anywhere, whereas the operator `=` is only allowed at the top level.
 
-    x <- 230
-    y <- 170
+```{r eval = F}
+x <- 1
+y <- 15.3
+```
 
 Let's add `x` and `y`.
 
-    # What is in x + y (or z)?
-    z <- x + y 
+```{r eval = F}
+#What is in x + y?
+x + y 
+```
 
-**Best practice note:** Variable names should be *intuitive*. This makes your code more readable, which reduces the amount of time it takes to understand what the code is doing. For example, assume your are tasked with finding the number of people in a crowd. For this, you wrote the code above, `x <- 230` ..., and sent it to your boss. Unfortunately, your boss also wanted to know the number of women in the crowd and does not know that you intended for `x` to be the number of women. Rather than using `x`, `y`, and `z`, you could write a more *readable* or interpretable code as:
-
-    women <- 230
-    men <- 170
-    crowd_size <- women + men
+Importantly, when defining variable names, ensure that you use an *informative* name. This enables yourself and others when reviewing code to know how the variable was used. For instance, we used `x` and `y` in the examples, but their meaning is unknown. Something like `country_population` or `room_capacity` provides better definition for a variable.
 
 ### R Data Types
 
-There are different types of data in R. Below is a table of some of the most commonly used data types.
+There are different types of data in R, which can be stored as a variable. Below is a table of some of the most commonly used data types.
 
-| Data Type | Definition                     | Examples                              |
-|------------------|------------------------|------------------------------|
+| Data Type | Definition                     | Example                               |
+|-------------|----------------------------------------------|-------------|
 | numeric   | Any number value               | `3.14`                                |
-| integer   | Any integer value              | `42` or `-100`                        |
+| integer   | Any whole number value         | `42`                                  |
 | character | Any number of ASCII characters | `"Hello world!"`                      |
 |           | defined within quotation marks |                                       |
-| boolean   | A value of `TRUE` or `FALSE`   | `TRUE`                                |
+| logical   | A value of `TRUE` or `FALSE`   | `TRUE`                                |
 | factor    | A categorical type of data     | `#> [1] Male Male Male Female Female` |
 |           |                                | `#> Levels: Male Female`              |
 
 The function `class()` can be used to find out the type of data that you are dealing with.
 
-    x <- 3
-    class(x)
+```{r eval = F}
+x <- 3
+class(x)
+```
 
-    x <- TRUE
-    class(x)
+```{r eval = F}
+x <- TRUE
+class(x)
+```
 
 ### Relational and Logical Operators
 
@@ -212,8 +228,10 @@ In R, there are relational operators that compare values between two variables. 
 | `!=`     | not equal to             |
 | `%in%`   | is 'in' a given vector   |
 
-    #Is 3 greater than 5?
-    3 > 5
+```{r eval = F}
+#Is 3 greater than 5?
+3 > 5
+```
 
 There are also logical operators which connect two or more expressions depending on the meaning of the operator. These are typically combined with relational operators.
 
@@ -223,17 +241,25 @@ There are also logical operators which connect two or more expressions depending
 | `&`      | AND         |
 | `!`      | NOT         |
 
-    #Is 3 greater than 1 and is 3 greater than 5? 
-    3 > 1 & 3 > 5
+```{r eval = F}
+#Is 3 greater than 1 and is 3 greater than 5? 
+3 > 1 & 3 > 5 # True
 
-    #Is 3 greater than 1 or is 3 greater than 5?
-    3 > 1 | 3 > 5
+#Is 3 greater than 1 or is 3 greater than 5?
+3 > 1 | 3 > 5 # True or False = True
 
-    #The NOT operator switches the value of a boolean
-    print(!TRUE) # this is printing the output of the opration NOT(TRUE) = FALSE
-    print(!FALSE) # this is printing the output of the operation NOT(FALSE) = TRUE
+#The NOT operator switches the value of a boolean
+print(!TRUE) # this is printing the output of the opration NOT(TRUE) = FALSE
+print(!FALSE) # this is printing the output of the operation NOT(FALSE) = TRUE
+```
 
-    #
+**Exercise**
+
+Find the answer to 10 \< 0 and 1\< 2
+
+```{r}
+# Write your code here
+```
 
 ## R Data Objects
 
@@ -241,68 +267,100 @@ There are also logical operators which connect two or more expressions depending
 
 Vectors are a data structure in R containing one or more values. In fact, you may have noticed a `[1]` in the output of `x`. This indicates that it is a vector of length `1`.
 
-    length(x) #This function gives you the length of a vector
+```{r eval = F}
+length(x) #This function gives you the length of a vector
+```
 
 We use the function `c()` to define a vector with multiple elements. The `c` stands for combine.
 
-    my_first_vector <- c(1,2,3,4,5) #We can also do this with the following, 1:5 instead of c()
-    my_first_vector
+```{r eval = F}
+my_first_vector <- c(1,2,3,4,5) #We can also do this with the following, 1:5 instead of c()
+my_first_vector
+```
 
 We can add more elements to the same vector.
 
-    my_first_vector <- c(my_first_vector, 6,7)
-    my_first_vector
+```{r eval = F}
+my_first_vector <- c(my_first_vector, 6,7)
+my_first_vector
+```
 
-We can call specific elements in a vector by using a process called *indexing*. Basically, we can subset specific elements of a vector for further analysis. We do this by defining which position we want in brackets `[]` after the vector.
+We can select (or *index*) a subset of elements in a vector. We do this by defining which position we want in brackets `[]` after the vector. **Note:** In R the first index is 1. This can be different in other languages. For example, the first index in Python is 0. For example, to get the first index in R you write: my_first_vector[1]. The equivalent Python code is my_first_vector[0].
 
-    #Let's take out the 3rd element
-    my_first_vector[3]
+```{r eval = F}
+#Let's take out the 3rd element
+my_first_vector[3]
+```
 
 What if we wanted to select multiple elements? We can use another vector with the positions we want.
 
-    #Let's take out the 2nd and 4th elements
-    my_first_vector[c(2,4)]
+```{r eval = F}
+#Let's take out the 2nd and 4th elements
+my_first_vector[c(2,4)]
+```
 
-We can also do the opposite and select all elements but a single or multiple element by using `-`.
+We can also select a set of elements using a colon. For example, to get elements 1 to 3
 
-    #Let's keep all but the 5th element
-    my_first_vector[-5]
+```{r eval = F}
+my_first_vector[1:3]
+```
 
-    #Let's keep all but the 1st and 3rd elements
-    my_first_vector[-c(1,3)]
+We can select all elements but a single or multiple element by using `-`.
+
+```{r eval = F}
+#Let's keep all but the 5th element
+my_first_vector[-5]
+```
+
+```{r eval = F}
+#Let's keep all but the 1st and 3rd elements
+my_first_vector[-c(1,3)]
+```
 
 Importantly, R functions are typically *vectorized*. This means that the function will perform its operation on all elements of the vector without having to loop through for each element.
 
-    my_first_vector
-    my_first_vector * 2
+```{r eval = F}
+my_first_vector
+my_first_vector * 2
+```
 
 We can also test some of math functions we listed above.
 
-    mean(my_first_vector) #This gives the mean of a numeric vector
-    min(my_first_vector) #This gives the minimum numeric value in a vector
-    max(my_first_vector) #This gives the maximmum numeric value in a vector
+```{r eval = F}
+mean(my_first_vector) #This gives the mean of a numeric vector
+min(my_first_vector) #This gives the minimum numeric value in a vector
+max(my_first_vector) #This gives the maximmum numeric value in a vector
+```
 
 ### Matrices
 
-Matrices are vectors with a dimension attribute. The dimension attribute tells us how many rows and columns the matrix has.
+Matrices are second ranked tensors (elements are represented with two indices) whereas vectors are first ranked tensors (you only need one index to specify the elements). Matrices have a dimension attribute that tell us the number of rows and columns.
 
-The `matrix()` function is used to create a function. We provide the values, \# of rows and \# of columns.
+The `matrix()` function is used to create a matrix. We provide the values, \# of rows and \# of columns.
 
-    #matrix of sequence 1 to 6 with two rows and three columnss
-    my_matrix <- matrix(1:6, nrow = 2, ncol = 3) 
-    print(my_matrix)
+```{r eval = F}
+#matrix of sequence 1 to 6 with two rows and three columnss
+my_matrix <- matrix(1:6, nrow = 2, ncol = 3) 
+print(my_matrix)
+```
 
-    dim(my_matrix)
+```{r eval = F}
+dim(my_matrix)
+```
 
-    my_matrix[1,2] #first row and second column
+```{r eval = F}
+my_matrix[1,2] #first row and second column
+```
 
 Matrices can be created by adding vectors using `cbind()`
 
-    vector_1 <- c(1,2,3,4)
-    vector_2 <- c(2,3,4,5)
+```{r eval = F}
+vector_1 <- c(1,2,3,4)
+vector_2 <- c(2,3,4,5)
 
-    matrix_1 <- cbind(vector_1, vector_2)
-    print(matrix_1)
+matrix_1 <- cbind(vector_1, vector_2)
+print(matrix_1)
+```
 
 ------------------------------------------------------------------------
 
@@ -315,52 +373,64 @@ Matrices can be created by adding vectors using `cbind()`
 
 ### List
 
-Lists are a special type of vector or R object can contain elements of different classes.
+Lists are objects that can contain elements of different classes (strings, integers,...)
 
 Lists can be explicitly created using the `list()` function.
 
-    my_list <- list('I love science!', 1, TRUE)
-    print(my_list)
+```{r eval = F}
+my_list <- list('I love science!', 1, TRUE)
+print(my_list)
+```
 
 Like vectors, we can use indexing to select specific elements of a list. Using single brackets `[]` will create a new list with the index or indices selected.
 
-    my_list[1:2]
+```{r eval = F}
+my_list[1:2]
+```
 
 Using double brackets `[[]]` will not create a new list and only selects the element.
 
-    my_list[[1]]
+```{r eval = F}
+my_list[[1]]
+```
 
 ------------------------------------------------------------------------
 
 **Exercise**
 
-1.  Can we do my_list$$1,2$$?
-2.  Can we do my_list$$\[2:3$$]?
+1.  Can we do my_list[1,2]?
+2.  Can we do my_list[[2:3]]?
 
 ------------------------------------------------------------------------
 
 ### Data Frames
 
-Data frames can be used tabular data in R. You can think of it as an excel worksheet. Also, unlike matrices, data frames can store different classes of objects in each column.
+Data frames can be used for tabular data in R. They are similar to an excel worksheet. Unlike matrices, data frames can store different classes of objects in each column.
 
 Data frames can be created using the `data.frame()` function.
 
-    my_dataframe <- data.frame(A = 1:5, B = c(T, T, F, F, T))
-    print(my_dataframe)
+```{r eval = F}
+my_dataframe <- data.frame(A = 1:5, B = c(T, T, F, F, T))
+print(my_dataframe)
+```
 
 ## Installing Packages
 
-While R comes with many pre-load packages, additional functionality can be added by installing packages through CRAN, Github, or Bioconductor. These packages add new functions that can simplify very complex calculations and scripts into one line.
+Although R comes with many pre-loaded packages, installing new packages gives you access to additional functions. Packages can be downloaded from CRAN, Github, or Bioconductor. Some functions available in new packages can reduce complex tasks to a single lines of code.
 
 ### CRAN
 
-As we discussed before, CRAN is the official repository for R packages. To install a package, you use the following function: `install.packages()`. The package name in quotations is the argument for this function. For example, we can install the data visualization package `ggplot2`, which we will use later.
+CRAN is the official repository for R packages. To install a package, use `install.packages("name_of_package")`. The package name in quotations is the argument for this function. For example, we can install the data visualization package `ggplot2`, which we will use later.
 
-    install.packages("ggplot2")
+```{r eval = F}
+install.packages("ggplot2")
+```
 
-We can load the package by using the `library()` function. In the case for `ggplot2` we do the following:
+We can load a package by using the `library()` function. To load the `ggplot2,` we do the following:
 
-    library(ggplot2)
+```{r eval = F}
+library(ggplot2)
+```
 
 ### Other Repositories
 
@@ -382,21 +452,29 @@ There are several methods for reading in tabular data.
 
 All of the above function perform similarly in that they import tabular data such as those in `.csv` or `.txt` format.
 
-    iris <- read.csv(file = 'iris_dataset.csv')
+```{r eval = F}
+iris <- read.csv(file = 'iris_dataset.csv')
+```
 
 ### Exploring your data
 
 The data that we imported is the `Iris` data set. It is a well-known data set of classifying iris plants. Let's see what type of data we imported by using the `class()` function.
 
-    class(iris)
+```{r eval = F}
+class(iris)
+```
 
 We use `dim()` to see how many rows and columns the data has.
 
-    dim(iris) #find rows and columns
+```{r eval = F}
+dim(iris) #find rows and columns
+```
 
 To explore the first 6 row, we can use the `head()` function. This may be helpful when analyzing large data sets.
 
-    head(iris)
+```{r eval = F}
+head(iris)
+```
 
 There are 4 columns that are made up of numbers and one with strings. The fifth column `Species` is the classification.
 
@@ -410,58 +488,80 @@ There are 4 columns that are made up of numbers and one with strings. The fifth 
 
 This tells us that there are 150 rows and 5 columns in this data frame. It is also good practice to use the `str` function to briefly look at the structure of the data.
 
-    str(iris)
+```{r eval = F}
+str(iris)
+```
 
 Again, this confirmed our brief look earlier that there are 4 columns of numeric values. Using `summmary()`, we can acquire some insight on the data distribution.
 
-    summary(iris)
+```{r eval = F}
+summary(iris)
+```
 
 We can start by looking at the data point distribution of `Sepal.Length` between the three species. We use the library `ggplot2` and create a scatter plot with `geom_point()`
 
-    ggplot(iris, mapping = aes(y = Sepal.Length, x = Species, color = Species)) +
-      geom_point()
+```{r eval = F}
+ggplot(iris, mapping = aes(y = Sepal.Length, x = Species, color = Species)) +
+  geom_point()
+```
 
 ### Saving data
 
 When working with R, you may accumulate several processed data in the Environment pane that you want to save and load at another time. In addition, you may want to send this data to another system that has R.
 
-If you are keeping good practices, you would have maintained a notebook and had all your code saved. In that case, you could re-run all the code, but it will take time and computation power.
+If you are keeping good practices, you would have maintained a notebook and save all of your code. In that case, you could re-run all the code, but it will take time and computation power.
 
-Saving the data as an R data file will time, computational power, and memory.
+Saving the data as an R data file can save time.
 
 There are a few ways to save your data.
 
 We can use `saveRDS()` to compress a single object as an `.rds`.
 
-    saveRDS(iris, file = "my_data_iris.rds")
+```{r eval = F}
+saveRDS(iris, file = "my_data_iris.rds")
+```
 
 To load the data, use the `readRDS()` function. You need to have the path to the file.
 
-    readRDS(file = "my_data_iris.rds")
+```{r eval = F}
+readRDS(file = "my_data_iris.rds")
+```
 
 Using the `save()` function, we can save multiple files as an `.Rdata`.
 
-    # Save multiple objects
-    save(iris, my_matrix, file = "iris_my_matrix.RData")
+```{r eval = F}
+# Save multiple objects
+save(iris, my_matrix, file = "iris_my_matrix.RData")
+```
 
 To load the data again, use the `load()` function.
 
-    load("iris_my_matrix.RData")
+```{r eval = F}
+load("iris_my_matrix.RData")
+```
 
 Finally, if you want to save your entire workspace and this may include various objects that are not part of the analyses. We use `save.image()`.
 
-    save.image(file = "my_work_space.RData")
+```{r eval = F}
+save.image(file = "my_work_space.RData")
+```
 
 The workspace can be loaded into R using `load()`.
 
-    load("my_work_space.RData")
+```{r eval = F}
+load("my_work_space.RData")
+```
 
 ## Best Practices
 
-1.  Document your code, thoughts, and decision making. Keep this in a `.Rmd` or `.r` file. Use `#` for commenting. This will aid in reproducible of your code for yourself and others.
-2.  Create and work inside an R project. This helps with code and data organization.
-3.  Use informative naming for variables. Try to stay from `x`, `y`, or similar.
-4.  Practice and keep learning!
+1.  Document your code using descriptive comments.
+    -   This will help you and others understand what your did in the future.
+2.  Keep ideas and explanations for your code in `.Rmd` or `.md` files.
+3.  Create and work inside a directory specific to your R project.
+    -   This helps with code and data organization.
+4.  Use intuitive names for variables and avoid vague names like `x` and `y`.
+5.  When in doubt, use the abundant resources online ($>2\times10^6$ users)
+6.  Practice and keep learning! *"Make mistakes faster" -AG*
 
 ## Additional Resources
 
