@@ -28,4 +28,4 @@ Please see the following instructions:
 2. Unzip to a known directory (e.g. Desktop). We will need these for the workshop.
 3. Review the [workshop notebook](https://github.com/ivanvazquezphd/bc_code/blob/main/Workshop_1/Basics-of-R.md) (optional).
 
-Please let us know if you do not and we can help you. You should have everything installed and ready to go by April 27th, 2022. 
+Please let us know if have any issues and we can help you. You should have everything installed and ready to go by April 27th, 2022. 
